@@ -1,0 +1,16 @@
+server:
+  port: 9002
+
+eureka:
+  instance:
+#    nonSecurePortEnabled: false
+#    securePortEnabled: true
+#    securePort: ${server.port}
+#    statusPageUrl: https://127.0.0.1:${server.port}/info
+#    healthCheckUrl: https://127.0.0.1:${server.port}/actuator/health
+#    secureHealthCheckUrl: https://127.0.0.1:${server.port}/actuator/health
+#    homePageUrl: https://127.0.0.1:${server.port}
+    hostname: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8762/eureka,http://localhost:8761/eureka

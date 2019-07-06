@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: secure-discovery
+
+#server:
+#  ssl:
+#    enabled: true
+##    client-auth: need
+#    key-store: D:\\dev\\a_client.jks
+#    key-store-password: chase123
+#    trust-store: D:\\dev\\a_server.jks
+#    trust-store-password: chase123
+#    key-alias: app
+#    key-password: chase123
+##  port: 8761
+
+logging:
+  level:
+    com:
+      netfilx:
+        eureka: DEBUG
+        discovery: DEBUG

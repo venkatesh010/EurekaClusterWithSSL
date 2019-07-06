@@ -1,0 +1,19 @@
+
+
+spring:
+  application:
+    name: Dummy
+
+
+#server:
+#  ssl:
+#    enabled: true
+#    client-auth: need
+#    key-store: D:\\dev\\a_client.jks
+#    key-store-password: chase123
+#    trust-store: D:\\dev\\a_server.jks
+#    trust-store-password: chase123
+#    key-password: chase123
+#    key-alias: app
+##  port: 8001
+
