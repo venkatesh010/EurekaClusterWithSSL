@@ -5,15 +5,15 @@ spring:
     name: Dummy
 
 
-#server:
-#  ssl:
-#    enabled: true
-#    client-auth: need
-#    key-store: D:\\dev\\a_client.jks
-#    key-store-password: chase123
-#    trust-store: D:\\dev\\a_server.jks
-#    trust-store-password: chase123
-#    key-password: chase123
-#    key-alias: app
-##  port: 8001
+server:
+  ssl:
+    enabled: true
+    client-auth: need
+    key-store: D:\dev\workspace\eureka-ssl\Disc-ssl\Disc-ssl\src\main\resources\to.jks
+    key-store-password: chase123
+    trust-store: D:\dev\workspace\eureka-ssl\Disc-ssl\Disc-ssl\src\main\resources\from.jks
+    trust-store-password: chase123
+    key-password: chase123
+    key-alias: to
+#  port: 8001
 

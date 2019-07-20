@@ -2,16 +2,17 @@ spring:
   application:
     name: secure-discovery
 
-#server:
-#  ssl:
-#    enabled: true
-##    client-auth: need
-#    key-store: D:\\dev\\a_client.jks
-#    key-store-password: chase123
-#    trust-store: D:\\dev\\a_server.jks
-#    trust-store-password: chase123
-#    key-alias: app
-#    key-password: chase123
+server:
+  ssl:
+    enabled: true
+#    client-auth: need
+    key-store: D:\dev\workspace\eureka-ssl\Disc-ssl\Disc-ssl\src\main\resources\to.jks
+    key-store-password: chase123
+#    trust-store: 'C:\Program Files\Java\jdk1.8.0_161\jre\lib\security\cacerts'
+    trust-store: D:\dev\workspace\eureka-ssl\Disc-ssl\Disc-ssl\src\main\resources\from.jks
+    trust-store-password: chase123
+    key-alias: to
+    key-password: chase123
 ##  port: 8761
 
 logging:
@@ -20,3 +21,17 @@ logging:
       netfilx:
         eureka: DEBUG
         discovery: DEBUG
+
+
+eureka:
+  instance:
+
+    nonSecurePortEnabled: false
+    securePortEnabled: true
+    securePort: ${server.port}
+    statusPageUrl: https://${eureka.hostname}:${server.port}/info
+    healthCheckUrl: https://${eureka.hostname}:${server.port}/health
+    secureHealthCheckUrl: https://localhost:${server.port}/health
+    homePageUrl: https://${eureka.hostname}:${server.port}/
+  server:
+    enable-self-preservation: false
