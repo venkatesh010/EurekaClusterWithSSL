@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      httpclient:
+        ssl:
+          trustedX509Certificates: D:\dev\appkeycert.crt
+#          useInsecureTrustManager: true
+server:
+  ssl:
+    enabled: true
+    client-auth: need
+    key-store: D:\dev\appkeystore.jks
+    key-store-password: chase123
+    trust-store: D:\dev\apptruststore.jks
+    trust-store-password: chase123
+    key-password: chase123
+    key-alias: appkeystore
+  port: 8081
+
+#eureka:
+#  instance:
+#    nonSecurePortEnabled: false
+#    securePortEnabled: true
+#    securePort: ${server.port}
+#    statusPageUrl: https://localhost:${server.port}/info
+#    healthCheckUrl: https://localhost:${server.port}/health
+#    homePageUrl: https://localhost:${server.port}
+#    hostname: localhost
+#  client:
+#    serviceUrl:
+#      defaultZone: https://localhost:8761/eureka

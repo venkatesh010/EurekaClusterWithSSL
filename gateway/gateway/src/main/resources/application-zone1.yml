@@ -1,0 +1,15 @@
+server:
+  port: 8081
+
+eureka:
+  instance:
+    nonSecurePortEnabled: false
+    securePortEnabled: true
+    securePort: ${server.port}
+    statusPageUrl: https://localhost:${server.port}/info
+    healthCheckUrl: https://localhost:${server.port}/health
+    homePageUrl: https://localhost:${server.port}
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: https://localhost:8761/eureka,https://127.0.0.1:8762/eureka
