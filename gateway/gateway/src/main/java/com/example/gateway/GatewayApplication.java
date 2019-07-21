@@ -2,18 +2,26 @@ package com.example.gateway;
 
 import com.netflix.discovery.DiscoveryClient;
 import org.apache.http.ssl.SSLContextBuilder;
+import reactor.core.publisher.Mono;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.cloud.gateway.webflux.ProxyExchange;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.net.ssl.SSLContext;
 import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -62,4 +70,14 @@ public class GatewayApplication {
 					).uri("lb://DUMMY/")
 				).build();
 	}
+
+	/*@GetMapping("/test")
+	public Mono<ResponseEntity<?>> proxy(ProxyExchange<byte[]> proxy) throws Exception {
+
+			Mono<ResponseEntity<byte[]>> response1 = proxy.uri("lb://DUMMY/").get();
+			Mono<ResponseEntity<byte[]>> response2 = proxy.uri("lb://DUMMY/hello").get();
+
+			ResponseEntity<byte[]> composed1 = response1.block();
+			return Mono.empty();
+	}*/
 }

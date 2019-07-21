@@ -8,7 +8,7 @@ spring:
 server:
   ssl:
     enabled: true
-    client-auth: need
+    client-auth: WANT
     key-store: D:\dev\workspace\eureka-ssl\Disc-ssl\Disc-ssl\src\main\resources\to.jks
     key-store-password: chase123
     trust-store: D:\dev\workspace\eureka-ssl\Disc-ssl\Disc-ssl\src\main\resources\from.jks
