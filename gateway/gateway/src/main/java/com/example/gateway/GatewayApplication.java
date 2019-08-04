@@ -83,7 +83,7 @@ public class GatewayApplication {
 	}
 
 	@GetMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void proxy(ProxyExchange<byte[]> proxy) throws Exception {
+	public Mono<String> proxy(ProxyExchange<byte[]> proxy) throws Exception {
 
 		Mono<ResponseEntity<byte[]>> resp1 = proxy.uri("http://localhost:9002/hello").get();
 		Mono<ResponseEntity<byte[]>> resp2 = proxy.uri("http://localhost:9002/").get();
@@ -96,6 +96,7 @@ public class GatewayApplication {
 		});
 
 
-		composed.subscribe(System.out::println);
+		//composed.subscribe(System.out::println);
+		return composed;
 	}
 }
