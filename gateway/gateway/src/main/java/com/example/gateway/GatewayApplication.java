@@ -13,15 +13,26 @@ import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.cloud.gateway.webflux.ProxyExchange;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.net.ssl.SSLContext;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -71,13 +82,20 @@ public class GatewayApplication {
 				).build();
 	}
 
-	/*@GetMapping("/test")
-	public Mono<ResponseEntity<?>> proxy(ProxyExchange<byte[]> proxy) throws Exception {
+	@GetMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)
+	public void proxy(ProxyExchange<byte[]> proxy) throws Exception {
 
-			Mono<ResponseEntity<byte[]>> response1 = proxy.uri("lb://DUMMY/").get();
-			Mono<ResponseEntity<byte[]>> response2 = proxy.uri("lb://DUMMY/hello").get();
+		Mono<ResponseEntity<byte[]>> resp1 = proxy.uri("http://localhost:9002/hello").get();
+		Mono<ResponseEntity<byte[]>> resp2 = proxy.uri("http://localhost:9002/").get();
 
-			ResponseEntity<byte[]> composed1 = response1.block();
-			return Mono.empty();
-	}*/
+		Mono<String> composed = resp1.zipWith(resp2, (a,b)->{
+			ByteBuffer bf1 = ByteBuffer.wrap(Objects.requireNonNull(a.getBody()));
+			ByteBuffer bf2 = ByteBuffer.wrap(Objects.requireNonNull(b.getBody()));
+
+			return StandardCharsets.UTF_8.decode(bf1).toString() + StandardCharsets.UTF_8.decode(bf2).toString();
+		});
+
+
+		composed.subscribe(System.out::println);
+	}
 }

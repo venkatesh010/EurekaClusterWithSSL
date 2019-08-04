@@ -9,11 +9,11 @@ spring:
 #          useInsecureTrustManager: true
 server:
   ssl:
-    enabled: true
+    enabled: false
     client-auth: WANT
-    key-store: D:\dev\workspace\eureka-ssl\Disc-ssl\Disc-ssl\src\main\resources\to.jks
+    key-store: D:\dev\workspace\eureka\Disc-ssl\Disc-ssl\src\main\resources\to.jks
     key-store-password: chase123
-    trust-store: D:\dev\workspace\eureka-ssl\Disc-ssl\Disc-ssl\src\main\resources\from.jks
+    trust-store: D:\dev\workspace\eureka\Disc-ssl\Disc-ssl\src\main\resources\from.jks
     trust-store-password: chase123
     key-password: chase123
     key-alias: to

@@ -1,7 +1,4 @@
-import java.util.stream.Collectors
-
 import cucumber.api.DataTable
-import cucumber.api.PendingException
 import cucumber.api.groovy.EN
 import cucumber.api.groovy.Hooks
 
@@ -12,7 +9,6 @@ this.metaClass.mixin(EN)
 
 
 Given(~/^the input$/) { DataTable values ->
-	// Write code here that turns the phrase above into concrete actions
 	calculator = new Calculator()
 	List<Map<String, String>> params = values.asMaps(String.class, String.class)
 	inputs = params.collect {it ->
